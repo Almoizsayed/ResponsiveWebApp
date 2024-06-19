@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "./Components/Sidebar";
 import NavBar from "./Components/NavBar";
-import UserCardView from "./Components/UserCardView";
+import UserList from "./Components/UserList";
 import UserWidget from "./Components/UserWidget";
 import Functionality from "./Components/Functionality";
 
@@ -12,7 +12,7 @@ function App() {
         <Sidebar />
         <div className="w-full h-18 flex  flex-col">
           <NavBar />
-          <UserCardView />
+          <UserList />
           <Functionality />
           <UserWidget />
         </div>
