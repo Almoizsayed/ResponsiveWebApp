@@ -1,7 +1,7 @@
 import React from "react";
 import useUserStore from "./useUserStore";
 import { useState } from "react";
-import formatDistanceToNow from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 
 const UserListView = () => {
   const users = useUserStore((state) => state.users);
@@ -28,31 +28,33 @@ const UserListView = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {users.map((users) => (
-            <tr key={users.id}>
+          {users.map((user) => (
+            <tr key={user.id}>
               <td className="text-[14px] px-4 py-2">
-                <input type="checkbox" className="w-4 h-2" />
+                <input type="checkbox" className="w-4 h-4" />
               </td>
-              <td className="text-[14px] px-4 py-2">{users.id}</td>
+              <td className="text-[14px] px-4 py-2">{user.id}</td>
               <td className="text-[14px] px-4 py-2">
-                <div className="flex-item-center">
+                <div className="flex flex-items-center gap-1 ">
                   <img
-                    className="w-8 h-4 rounded-full"
-                    src={users.photo}
-                    alt={`${users.firstname}${users.lastname}`}
+                    className="w-8 h-8 rounded-full"
+                    src={user.photo}
+                    alt={`${user.firstname}${user.lastname}`}
                   />
-                  <span className="whitespace-nowwrap">{`${users.firstname}${users.lastname}`}</span>
+                  <span className="whitespace-nowwrap">
+                    {user.firstName + " " + user.lastName}
+                  </span>
                 </div>
               </td>
-              <td className="text-[14px] px-4 py-2">{users.email}</td>
-              <td className="hidden text-[14px] px-4 py-2 ">{users.phone} </td>
-              <td className="hidden text-[14px] px-4 py-2 ">
-                {getLastLoginDisplay(users.lastLogin)}
+              <td className="text-[14px] px-4 py-2">{user.email}</td>
+              <td className="text-[14px] px-4 py-2 ">{user.phone} </td>
+              <td className="text-[14px] px-4 py-2 ">
+                {getLastLoginDisplay(user.lastLogin)}
               </td>
-              <td className="hidden text-[14px] px-4 py-2 ">{users.role}</td>
-              <td className="hidden text-[14px] px-4 py-2 ">{users.status} </td>
-              <td className="hidden text-[14px] px-4 py-2 ">
-                {users.action}
+              <td className="text-[14px] px-4 py-2 ">{user.role}</td>
+              <td className="text-[14px] px-4 py-2 ">{user.status} </td>
+              <td className="text-[14px] px-4 py-2 ">
+                {user.action}
                 <select className="bg-white border border-[#777a81] rounded-md w-24 h-8">
                   <option>Action </option>
                   <option>Edit</option>

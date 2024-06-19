@@ -1,10 +1,10 @@
 import React from "react";
 import UserCard from "./UserCard";
-const users = (state) => state.users;
-
+import useUserStore from "./useUserStore";
 const UserGridView = () => {
+  const users = useUserStore((state) => state.users);
   return (
-    <div className="flex justify-start p-5 items-center ">
+    <div className="grid grid-cols-3 grid-rows-3 gap-5 ">
       {users.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}
