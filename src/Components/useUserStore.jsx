@@ -135,6 +135,15 @@ const useUserStore = create((set) => ({
       status: "Active",
     },
   ],
+  lastUserId: 12,
+  setUsers: (users) => set({ users }),
+
+  addUser: (newUser) =>
+    set((state) => {
+      const updatedUsers = [...state.users, newUser];
+      const updatedLastUserId = newUser.id;
+      return { users: updatedUsers, lastUserId: updatedLastUserId };
+    }),
 }));
 
 export default useUserStore;

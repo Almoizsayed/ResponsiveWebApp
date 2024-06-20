@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GridViewIcon, ListViewIcon, UsersIcon } from "../assets";
 import { FilterByIcon, SearchIcon, SortByIcon } from "../assets";
 import UserGridView from "./UserGridView";
 import UserListView from "./UserListView";
+import { useNavigate } from "react-router-dom";
+import { Router } from "react-router-dom";
 
 const UserCardView = () => {
   const [isGridView, setIsGridview] = useState(true);
+  const navigate = useNavigate();
+
+  const navigateToAddUser = () => {
+    navigate("/add-user");
+  };
   return (
-    <div className="bg-[#F9F9F9]">
+    <div className="bg-[#F9F9F9] w-full h-18 flex  flex-col">
       <div className=" w-full flex justify-between  mt-10  font-semibold">
         <div className=" ml-6 "> Users</div>
         <div className="flex items-center">
@@ -23,7 +30,10 @@ const UserCardView = () => {
           >
             <GridViewIcon className="text-[#FFFFFF]" />
           </button>
-          <button className="bg-[#641CC0] text-[#FFFFFF] w-44 h-10 mr-2 ml-2 p-2 ">
+          <button
+            className="bg-[#641CC0] text-[#FFFFFF] w-44 h-10 mr-2 ml-2 p-2 "
+            onClick={navigateToAddUser}
+          >
             {" "}
             +Add User
           </button>
