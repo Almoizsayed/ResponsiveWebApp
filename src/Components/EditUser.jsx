@@ -1,60 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import useUserStore from "./useUserStore";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { HomeIcon } from "../assets";
 
-const AddUser = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [lastLogin, setLastlogin] = useState("");
-  const [role, setRole] = useState("");
-  const [status, setStatus] = useState("");
+const EditUser = () => {
+  const { users, updatedusers } = useUserStore();
+  const navigate = useNavigate();
+  const { userId } = useParams();
+  const user = users.find((user) => user.id === parseInt(userId));
+  const [firstName, setFirstName] = useState(user?.firstName || "");
+  const [lastName, setLastName] = useState(user?.lastName || "");
+  const [email, setEmail] = useState(user?.email || "");
+  const [phone, setPhone] = useState(user?.phone || "");
+  const [role, setRole] = useState(user?.role || "User");
+  const [status, setStatus] = useState(user?.status || "Active");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { users, lastUserId } = useUserStore();
-  const [isUserAdded, setIsUserAdded] = useState(false);
-
-  const navigate = useNavigate();
-  const addUser = useUserStore((state) => state.addUser);
-
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
   const handleSubmit = (e) => {
-    e.preventDefault(); // Corrected to invoke preventDefault()
-
-    if (password !== confirmPassword) {
-      alert("Password doesn't match");
+    e.preventDefault();
+    if (password != password) {
+      toast.error("Password doesnot Match");
       return;
     }
-
-    const newUserId = lastUserId + 1;
-    const newUser = {
-      id: newUserId,
-      photo: "https://via.placeholder.com/100",
+    const updatedUser = {
+      id: user.id,
+      photo: user.photo,
       firstName,
       lastName,
       email,
       phone,
       role,
       status,
-      lastLogin: new Date().toISOString(),
+      lastlogin: user.lastlogin,
+      password: password ? password : user.password,
     };
+    updatedUser(user.id, updatedUser);
 
-    addUser(newUser); // Move addUser logic inside handleSubmit
-
-    // Reset form fields and navigate after successful submission
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPhone("");
-    setRole("User");
-    setStatus("Active");
-    setPassword("");
-    setConfirmPassword("");
-
-    navigate("/"); // Move navigation inside handleSubmit
-    toast.success("User Added Successfully");
+    toast.warn("User has been updated successfully!");
+    navigate("/");
   };
 
   return (
@@ -191,4 +180,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;

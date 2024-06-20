@@ -14,7 +14,7 @@ const UserCardView = () => {
     navigate("/add-user");
   };
   return (
-    <div className="bg-[#F9F9F9] w-full h-18 flex  flex-col">
+    <div className="bg-[#F9F9F9]">
       <div className=" w-full flex justify-between  mt-10  font-semibold">
         <div className=" ml-6 "> Users</div>
         <div className="flex items-center">

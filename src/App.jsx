@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddUser from "./Components/AddUser";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import EditUser from "./Components/EditUser";
+
 // import UserWidget from "./Components/UserWidget";
 // import Functionality from "./Components/Functionality";
 
@@ -17,13 +19,11 @@ function App() {
           <Sidebar />
           <div className="w-full h-18 flex  flex-col">
             <NavBar />
-            <UserList />
-          </div>
-          <div>
             <ToastContainer />
             <Routes>
-              {/* <Route path="/" element={<UserList />} /> */}
+              <Route path="/" element={<UserList />} />
               <Route path="/add-user" element={<AddUser />} />
+              <Route path="/edit-user/:userId" element={<EditUser />} />
             </Routes>
           </div>
         </div>
