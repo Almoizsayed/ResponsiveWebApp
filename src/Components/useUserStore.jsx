@@ -144,17 +144,23 @@ const useUserStore = create((set) => ({
       const updatedLastUserId = newUser.id;
       return { users: updatedUsers, lastUserId: updatedLastUserId };
     }),
+
   updateUser: (userId, updatedUser) =>
     set((state) => ({
       users: state.users.map((user) =>
         user.id === userId ? { ...user, ...updatedUser } : user
       ),
     })),
+
   updateUserStatus: (userId, status) =>
     set((state) => ({
       users: state.users.map((user) =>
         user.id === userId ? { ...user, status } : user
       ),
+    })),
+  deleteUser: (userId) =>
+    set((state) => ({
+      users: state.users.filter((user) => user.id !== userId),
     })),
 }));
 

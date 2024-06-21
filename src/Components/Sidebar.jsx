@@ -5,7 +5,7 @@ import users from "../assets/users.svg";
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col h-screen p-3 bg-white shadow-lg  w-64">
+    <div className="flex-col h-screen p-3 bg-white shadow-lg w-64 hidden md:flex">
       <div className="flex items-center gap-3 m-2 cursor-pointer">
         <img className="w-200 h-200" src={logo} alt="" />
       </div>

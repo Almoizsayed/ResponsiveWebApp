@@ -4,7 +4,7 @@ import useUserStore from "./useUserStore";
 const UserGridView = () => {
   const users = useUserStore((state) => state.users);
   return (
-    <div className="grid grid-cols-3 grid-rows-3 gap-5 ">
+    <div className="flex items-center flex-wrap">
       {users.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}
