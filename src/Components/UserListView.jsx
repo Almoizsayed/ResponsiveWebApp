@@ -9,6 +9,7 @@ const UserListView = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const users = useUserStore((state) => state.users) || [];
+  const [selectedUsers, setSelectedUsers] = useState([]);
 
   const getLastLoginDisplay = (lastLogin) => {
     return formatDistanceToNow(new Date(lastLogin), { addSuffix: true });
@@ -26,11 +27,25 @@ const UserListView = () => {
       setShowDeleteModal(true);
     }
   };
+  const handleSelectUser = (id) => {
+    setSelectedUsers((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((userId) => userId !== id)
+        : [...prevSelected, id]
+    );
+  };
 
   const handleDeleteUser = () => {
     if (userToDelete) {
       useUserStore.getState().deleteUser(userToDelete);
       setShowDeleteModal(false);
+    }
+  };
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedUsers(users.map((user) => user.id));
+    } else {
+      setSelectedUsers([]);
     }
   };
 
@@ -46,7 +61,12 @@ const UserListView = () => {
         <thead className="bg-gray-50">
           <tr>
             <th className="w-12 px-4 py-2 text-left">
-              <input type="checkbox" className="w-4 h-4" />
+              <input
+                type="checkbox"
+                className="w-4 h-4"
+                onChange={handleSelectAll}
+                checked={selectedUsers.length === users.length}
+              />
             </th>
             <th className="text-[14px] px-4 py-2 text-left">ID</th>
             <th className="text-[14px] px-4 py-2 text-left">Name</th>
