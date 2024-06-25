@@ -3,6 +3,7 @@ import useUserStore from "./useUserStore";
 import { formatDistanceToNow } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import DeleteUser from "./DeleteUser";
+import { toast } from "react-toastify";
 
 const UserListView = () => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const UserListView = () => {
     if (userToDelete) {
       useUserStore.getState().deleteUser(userToDelete);
       setShowDeleteModal(false);
+      toast.error("User has been deleted successfully");
     }
   };
   const handleSelectAll = (e) => {

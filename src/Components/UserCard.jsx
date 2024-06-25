@@ -2,15 +2,8 @@ import React from "react";
 import useUserStore from "./useUserStore";
 
 export default function UserCard({ user }) {
-  // const users = useUserStore((state) => state.users);
-  // {
-  //   console.log(users);
-  // }
-
   return (
-    // w-4/5 max-w-6xl mx-auto
-    // <div className="grid grid-cols-3 grid-rows-3 gap-5 ">
-    <div className="relative flex items-center border border-[#E0E0E2] p-4 rounded-md bg-[#FAFAFA] w-full max-w-[370px]">
+    <div className="relative flex items-center border border-black p-2 rounded-md bg-[#FAFAFA] min-w-[300px] max-w-[336px] ">
       <div className="photo-container pr-4">
         <img
           src={user.photo}
@@ -20,7 +13,7 @@ export default function UserCard({ user }) {
       </div>
       <div className="flex flex-col justify-center text-[#63666B]">
         <p className="font-poppins text-[18px] font-medium leading-[27px] text-left">{`${user.firstName} ${user.lastName}`}</p>
-        <p className="font-poppins text-[14px] font-normal leading-[21px] text-left text-ellipsis whitespace-nowrap overflow-hidden max-w-[200px]">
+        <p className="font-poppins text-[14px] font-normal leading-[21px] text-left text-ellipsis whitespace-nowrap overflow-hidden max-w-[180px]">
           {user.email}
         </p>
         <div className="flex  items-center h-8 ">

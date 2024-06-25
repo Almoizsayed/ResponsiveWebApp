@@ -74,12 +74,7 @@ const UserCardView = () => {
               <p className="text-[#63666B] hidden lg:inline p-2"> Filter by </p>
             </button>
           </div>
-          {/* <div className="flex items-center  p-2 border border-gray-300 rounded-md h-11 w-64">
-            <button className="h-6 aspect-square">
-              <input type="text" placeholder="Search..." />
-              <SearchIcon />
-            </button>
-          </div> */}
+
           <div className="flex items-center mr-5 md:mr-7">
             <div
               className={classNames(
